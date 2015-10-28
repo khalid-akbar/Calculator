@@ -15,15 +15,19 @@ function btn_clicked(val,type){
 				paranthesis=0;
 				break;
 			case '(':
-				paranthesis++;
-				$("#display").append(val);
-				stack.push({type:'op',val:'('});
+				if(isPreviousElementAnOperator()){
+					paranthesis++;
+					$("#display").append(val);
+					stack.push({type:'op',val:'('});
+				}
 				break;
 			case ')':
 				if(paranthesis>0){
-					paranthesis--;
-					$("#display").append(val);
-					stack.push({type:'op',val:')'});
+					if(isPreviousElementANumber() || isPreviousElementAClosingBrace()){
+						paranthesis--;
+						$("#display").append(val);
+						stack.push({type:'op',val:')'});	
+					}
 				}
 				break;
 			case '+':				
@@ -47,22 +51,24 @@ function btn_clicked(val,type){
 		}
 		
 	}else if(type=='dec' && stack.length>0){
-		
-		if(isPreviousElementANumber){ //need to do some processing
-			$("#display").append('.');
+		if(isPreviousElementANumber()){ //need to do some processing
+			//alert("a number");
 			var stackTop = stack.pop();
 			var value = stackTop.val+".";
 			stack.push({type : 'float',val : value});
+			$("#display").append('.');
 		}
 	}else if(type=='dig'){
+		//alert(isPreviousElementAnOperator());
 		if(stack.length==0){
 			$("#display").append(val);
 			stack.push({type : 'dig',val : val});
-		}else
-		if(isPreviousElementAnOperator()){
+		}
+		else if(isPreviousElementAnOperator()){
 			$("#display").append(val);
 			stack.push({type : 'dig',val : val});
 		}else if(isPreviousElementANumber()){
+			//alert("here");
 			$("#display").append(val);
 			var stackTop = stack.pop();
 			var value = stackTop.val * 10 + val; 
@@ -76,16 +82,20 @@ function btn_clicked(val,type){
 	}
 }
 function getTopElementValue(){
+	if(stack.length==0) return false;
+	
 	var stackTop = stack.pop();		
 	var elem = stackTop.val;				
 	stack.push(stackTop);
 	return elem;
 }
 function getTopElementType(){
+	if(stack.length==0) return '';
+	
 	var stackTop = stack.pop();		
 	var type = stackTop.type;				
 	stack.push(stackTop);
-	return elem;
+	return type;
 }
 function processAdditiveOperation(val){
 	var elem = getTopElementValue();
@@ -103,6 +113,7 @@ function processMultiplicativeOperation(val){
 }
 function isPreviousElementANumber(){
 	/* decimal number not floating */
+	if(stack.length==0) return false;
 	var stackTop = stack.pop();
 	var type = stackTop.type;
 	stack.push(stackTop);
@@ -128,17 +139,19 @@ function isPreviousElementAFloat(){
 }
 function isPreviousElementAnOperator(){
 	var type = getTopElementType();
-	if(type=='op'){
+	if(type == 'op'){
 		return true;
 	}
 	return false;
 }
 
 function evaluate(){
-	printStack();
+	var x = document.getElementById("display").innerHTML;
+	document.getElementById("display").innerHTML = eval(x);
+	//alert()
 }
 function printStack(){
 	while(stack.length>0){
-		document.append(stack.pop().val+"\n");
+		$("#content_area").append(stack.pop().val+"<br>");
 	}
 }
