@@ -5,18 +5,18 @@ html,body{
 	background-color : #008080;
 }
 #content_area{
-	height : 400px;
+	height : 300px;
 	width  : 500px;
 	background-color : #c0c0c0;
 	margin : 0 auto;
-	margin-top : 100px;
+	margin-top : 200px;
 	padding : 20px;
 	border-radius : 5px; 
 }
 #display{
 	height : 34px;
 	padding : 5px;
-	width : 100%;
+	width : 490px;
 	background-color : #FEFEFE;
 	font-size: 24px;
 	text-align: right;
@@ -24,16 +24,21 @@ html,body{
 	border-radius : 3px;
 }
 #button_area{
-	width   : 100%;
+	width   : 490px;
 	padding : 5px;
 	background-color : #cccccc;
-	height : 300px;
+	height : 220px;
 	border-radius : 5px;
 	margin-top : 10px;
 }
 .btn{
 	background-color : #00d3e4;
 	height : 50px;
-	width : 95px;	
+	width : 90px;	
 	font-size: 24px;
+	margin-left : 3px;
+	margin-top : 4px;
+}
+.clear{
+	background-color: #FFAA22;
 }
