@@ -1,7 +1,7 @@
-
+check();
 function check(){
-	var x = "2.334";
-	alert(parseFloat(x)+2);
+	var i =1;
+	console.log('i = %d',i);
 }
 var stack = [] ;
 var paranthesis=0;
