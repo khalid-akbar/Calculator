@@ -1,0 +1,11 @@
+What have i done to make this calculator?
+
+#1. I have maitained a stack where i have put the elements one by one
+#2. If two digits were entered consecutively , I tool them both and turned them both into a single element and the type was set to 'dig'
+#3. If a decimal point was found i never allowed it to follow anything other than a 'dig' type , after getting the decimal . after a 'dig'
+    i merged them both and turned them into a single element , i also changed the type from 'dig' to 'float'
+#4. I allowed the use of opening bracket only after other opening brackets and operators.
+#5. Closing brackets were allowed only after other closing brackets , dig and float types.
+#6. + and -signs were not allowed only after other +/- signs
+#7. *,/,%(multiplicative) signs were not allowed after other multiplicative signs and additive signs.
+

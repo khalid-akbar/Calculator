@@ -23,7 +23,7 @@ function btn_clicked(val,type){
 				break;
 			case ')':
 				if(paranthesis>0){
-					if(isPreviousElementANumber() || isPreviousElementAClosingBrace()){
+					if(isPreviousElementANumber() || isPreviousElementAClosingBrace() || isPreviousElementAFloat){
 						paranthesis--;
 						$("#display").append(val);
 						stack.push({type:'op',val:')'});	
